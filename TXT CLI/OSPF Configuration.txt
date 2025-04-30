@@ -1,0 +1,58 @@
+#To remove the exitsting RIP :
+
+en
+conf t
+no router rip
+do wr
+
+
+#TO create The OSPF
+
+#Main Campus Router
+
+en
+conf t
+router ospf 1
+router-id 1.1.1.1
+
+network 192.168.0.0 0.0.255.255 area 0
+network 10.10.10.0 0.0.0.3 area 0
+network 10.10.10.4 0.0.0.3 area 0
+exit
+do wr
+
+
+
+#Branch Campus Router
+
+en
+conf t
+router ospf 1
+router-id 2.2.2.2
+
+network 192.168.9.0 0.0.0.255 area 0
+network 192.168.10.0 0.0.0.255 area 0
+network 10.10.10.0 0.0.0.3 area 0
+exit
+do wr
+
+
+
+#Cloud Router
+
+en
+conf t
+router ospf 1
+router-id 3.3.3.3
+
+network 10.10.10.4 0.0.0.3 area 0
+network 20.0.0.0 0.0.0.3 area 0
+exit
+do wr
+
+
+
+
+
+
+
